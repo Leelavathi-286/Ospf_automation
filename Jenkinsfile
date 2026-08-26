@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Run OSPF Tests') {
+            steps {
+                sh '''
+                    echo "Starting OSPF pyATS automation..."
+                    python3 --version
+                    pyats run job ospf_job.py -testbed-file testbed.yaml
+                '''
+            }
+        }
+    }
+
+    post {
+        always {
+            echo "OSPF automation pipeline completed."
+        }
+
+        success {
+            echo "OSPF tests completed successfully."
+        }
+
+        failure {
+            echo "OSPF tests failed."
+        }
+    }
+}
