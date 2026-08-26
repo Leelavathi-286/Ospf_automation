@@ -11,9 +11,13 @@ pipeline {
         stage('Run OSPF Tests') {
             steps {
                 sh '''
+                    export PATH="/var/lib/jenkins/pyats_env/bin:$PATH"
+
                     echo "Starting OSPF pyATS automation..."
                     python3 --version
-                    /var/lib/jenkins/pyats_env/bin/pyats run job ospf_job.py
+                    which pyats
+                    pyats version
+                    pyats run job ospf_job.py
                 '''
             }
         }
@@ -22,14 +26,6 @@ pipeline {
     post {
         always {
             echo "OSPF automation pipeline completed."
-        }
-
-        success {
-            echo "OSPF tests completed successfully."
-        }
-
-        failure {
-            echo "OSPF tests failed."
         }
     }
 }
