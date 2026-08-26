@@ -1,0 +1,69 @@
+ospf:
+
+  process_id: 1
+
+  convergence_wait: 5
+
+  devices:
+
+    R1:
+
+      router_id: 1.1.1.1
+
+      ospf_interfaces:
+        - GigabitEthernet0/0
+
+      neighbors:
+        - router_id: 2.2.2.2
+          state: FULL
+
+      expected_neighbor_count: 1
+
+      expected_full_neighbor_count: 1
+
+      shutdown_test:
+        enabled: true
+        interface: GigabitEthernet0/0
+        expected_neighbor_after_shutdown: 0
+
+
+    R2:
+
+      router_id: 2.2.2.2
+
+      ospf_interfaces:
+        - GigabitEthernet0/0
+        - GigabitEthernet0/1
+
+      neighbors:
+        - router_id: 1.1.1.1
+          state: FULL
+
+        - router_id: 3.3.3.3
+          state: FULL
+
+      expected_neighbor_count: 2
+
+      expected_full_neighbor_count: 2
+
+      shutdown_test:
+        enabled: false
+
+
+    R3:
+
+      router_id: 3.3.3.3
+
+      ospf_interfaces:
+        - GigabitEthernet0/0
+
+      neighbors:
+        - router_id: 2.2.2.2
+          state: FULL
+
+      expected_neighbor_count: 1
+
+      expected_full_neighbor_count: 1
+
+      shutdown_test:
+        enabled: false

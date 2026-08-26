@@ -1,0 +1,13 @@
+pycache/
+*.pyc
+.python-version
+.env
+.venv/
+env/
+.idea/
+.vscode/
+*.log
+*.pem
+*.key
+testbed.yaml
+ospf_data.yaml

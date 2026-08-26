@@ -1,0 +1,76 @@
+testbed:
+  name: cml_ospf_lab
+
+devices:
+
+  terminal_server:
+    os: linux
+    type: server
+
+    credentials:
+      default:
+        username: developer
+        password: C1sco12345
+
+    connections:
+      cli:
+        protocol: ssh
+        ip: 10.10.20.161
+        port: 22
+
+
+  R1:
+    os: ios
+    type: router
+
+    credentials:
+      default:
+        username: developer
+        password: C1sco12345
+
+    connections:
+      defaults:
+        class: unicon.Unicon
+
+      cli:
+        protocol: telnet
+        proxy: terminal_server
+        command: "open /Lab at Tue 10:31 AM/R1/0"
+
+
+  R2:
+    os: ios
+    type: router
+
+    credentials:
+      default:
+        username: developer
+        password: C1sco12345
+
+    connections:
+      defaults:
+        class: unicon.Unicon
+
+      cli:
+        protocol: telnet
+        proxy: terminal_server
+        command: "open /Lab at Tue 10:31 AM/R2/0"
+
+
+  R3:
+    os: ios
+    type: router
+
+    credentials:
+      default:
+        username: developer
+        password: C1sco12345
+
+    connections:
+      defaults:
+        class: unicon.Unicon
+
+      cli:
+        protocol: telnet
+        proxy: terminal_server
+        command: "open /Lab at Tue 10:31 AM/R3/0"
