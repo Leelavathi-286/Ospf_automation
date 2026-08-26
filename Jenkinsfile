@@ -13,7 +13,7 @@ pipeline {
                 sh '''
                     echo "Starting OSPF pyATS automation..."
                     python3 --version
-                    pyats run job ospf_job.py -testbed-file testbed.yaml
+                    /var/lib/jenkins/pyats_env/bin/pyats run job ospf_job.py -testbed-file testbed.yaml
                 '''
             }
         }
